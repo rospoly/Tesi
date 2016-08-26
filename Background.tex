@@ -1,4 +1,58 @@
 \chapter{Background}
-\section{Android \& CO}
+\section{Android \& Intent}
+An android application is base on components. Those are the building blocks of the application, and each of them exists on its own and could be an entry point of the application. 
+An Intent is a bearer of information that connect two entities,that are called components, involved in an Android application.
+Components are divided in four main sections:
+\begin{itemize}
+	\item Activities. An Activity is a single screen of the application. It can be compared to a MCV paradigm. An application can be composed by many activities each of them with its scope, and with the possibility to comunicate with other activities containand or not in the same app.
+	\item Services. A Service is a set of batch processes with no interaction with the user. They are usually labeled as background processes since they can be started and completed without need of users interaction. For instance a service component can be adopted in order to perform a downloading operation.
+	\item Broadcast Receiver. A broadcast receiver is a listener of events triggered by the operating system or by other custom components. The broadcast receiver listen is registered in order to intercept specifics events and perfrom the appropriate action.
+	\item Content Provider. A content Provider is an interface between one or more applications and the memorization layer, in which informations can be stored in to databases, in files, or over a network. It can be the common interface between applications and memorization layer, it can perform inter-operability between applications and memorization layer. For instance consider all the applications that access to the same telephone book for managing it.
+\end{itemize}
+The comunication involving Activities,Services,and broadcast Receivers is depicted thought a comunication message called Intent. 
+An Intent can be Implicait or Explicit:
+\begin{itemize}
+	\item Implicit: The addresses of recipients is not defined when the Intent is created, but it is decided by the operating system together with the user. First the operating system is consulted about who can holds the operations requested by the Intent. If there are more than one match, the user will be asked in order to perform the decision. In contrast if only one match occurs, the operating system will automatically perform the decision.
+	\item Explicit: The recipient of the message is uniquely determined. The Intent contains the fully class name of the receiver. This solution is usually adopted for intra-communication application, since is well known which components formed the application.
+\end{itemize}
+
+\section{Application Manifest}
+When an Implicit Intent is sended to the Operating System in order to find all matcher receiver, the dispatcher research all the applications that can handle the requested operation. This is done by comparison between the request carried by the intent, called Action, and what is offered by application components. The application offer is described by the AndroidManifest.xml. One of the task of the manifest is to inform the operating system about the app capabilities, that are specified throught Intent Filters. Intent Filter allows the application to be selected in order to perform the operation described by the action tag, that must be contained in every Intent Filter. If an application doesn't describe any Intent Filter than it can be reached only by explicit intents, since an explicit intent is always delivered to the destination component regardless any intent filters defined.
+
+
+\section{Intent Constructor}
+The purpose of an Intent is to activate a receiver and if necessary to passing it additional information. Since the intent mechanism is managed by the operating system, the path traced by the intent is darked to the application, from the beginning, when the intent is sended, until when it is received.
+The Intent creation is the set of instructions that produce a new intent and allocate it to the heap. The creation can be performed by six constructors, which are divided in two set: five simple, and one derived constructors.
+\bigskip
+
+\noindent 
+Simple:
+\begin{itemize}
+	\item Intent() Create an empty intent. 
+	\item Intent(String action) Create an intent with a given action.
+	\item Intent(String action, Uri uri) Create an intent with a given action and for a given data url.
+	\item Intent(Context packageContext, Class cls) Create an intent for a specific context that require a particular 	destination class.
+	\item Intent(String action, Uri uri, Context packageContext, Class cls) Create an intent as the previous but explain a a specified action and data parameter action.
+\end{itemize}
+
+Simple
+
+
+
+Derived
+Intent(Intent o) Copy the contents of the parameter inside the new one.
+The main different between simple and derived constructor is that the first one can be considered as starting point of an Intent. The Intent defined using simple constructor exists from the moment in which the instruction is founded. For derived constructor what is contained into the intent could be received from the rest of the world and be assigned to the new one. Derived constructor cannot be considered as starting point of an Intent since is not clare where the intent parameter coming from.
+
+Intent sending 
+starting activity services ....
+Many different kind of destination addresses
+Action
+Classes
+
+Intent receiving
+Receiving an intent
+
+Information carried through an Intent
+Oracle consult
 \section{Elements of Static Analysis}
 \section{Intents Flow}
